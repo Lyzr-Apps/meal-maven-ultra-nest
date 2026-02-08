@@ -1,0 +1,519 @@
+{
+  "agent_name": "Recipe Research Agent",
+  "agent_id": "6988bea74b8f2695557f93f0",
+  "agent_purpose": "recipe_research",
+  "description": "Searches for Indian recipes from YouTube, blogs, Instagram",
+  "response_schema": {
+    "recipes": [
+      {
+        "name": "string",
+        "meal_type": "string",
+        "cuisine_type": "string",
+        "source_type": "string",
+        "source_name": "string",
+        "source_url": "string",
+        "key_ingredients": [
+          "string"
+        ],
+        "protein_grams": "number",
+        "calories": "number",
+        "carbs_grams": "number",
+        "fats_grams": "number",
+        "prep_time_minutes": "number",
+        "is_protein_rich": "boolean",
+        "description": "string"
+      }
+    ]
+  },
+  "example_response": {
+    "recipes": [
+      {
+        "name": "Masala Dosa",
+        "meal_type": "breakfast",
+        "cuisine_type": "South Indian",
+        "source_type": "YouTube",
+        "source_name": "Hebbar's Kitchen",
+        "source_url": "https://www.youtube.com/watch?v=example1",
+        "key_ingredients": [
+          "rice",
+          "urad dal",
+          "potato"
+        ],
+        "protein_grams": 11,
+        "calories": 250,
+        "carbs_grams": 45,
+        "fats_grams": 7,
+        "prep_time_minutes": 30,
+        "is_protein_rich": false,
+        "description": "Crispy rice and urad dal crepes filled with spicy potato filling."
+      },
+      {
+        "name": "Upma",
+        "meal_type": "breakfast",
+        "cuisine_type": "South Indian",
+        "source_type": "Blog",
+        "source_name": "Veg Recipes of India",
+        "source_url": "https://www.vegrecipesofindia.com/upma-recipe",
+        "key_ingredients": [
+          "semolina",
+          "mustard seeds",
+          "vegetables"
+        ],
+        "protein_grams": 8,
+        "calories": 220,
+        "carbs_grams": 36,
+        "fats_grams": 7,
+        "prep_time_minutes": 20,
+        "is_protein_rich": false,
+        "description": "Savory semolina porridge cooked with vegetables and spices."
+      },
+      {
+        "name": "Poha",
+        "meal_type": "breakfast",
+        "cuisine_type": "North Indian",
+        "source_type": "YouTube",
+        "source_name": "Nisha Madhulika",
+        "source_url": "https://www.youtube.com/watch?v=example2",
+        "key_ingredients": [
+          "flattened rice",
+          "onion",
+          "peanuts"
+        ],
+        "protein_grams": 6,
+        "calories": 210,
+        "carbs_grams": 34,
+        "fats_grams": 8,
+        "prep_time_minutes": 15,
+        "is_protein_rich": false,
+        "description": "Light and fluffy flattened rice with spices and peanuts."
+      },
+      {
+        "name": "Egg Bhurji",
+        "meal_type": "breakfast",
+        "cuisine_type": "North Indian",
+        "source_type": "YouTube",
+        "source_name": "Sanjeev Kapoor",
+        "source_url": "https://www.youtube.com/watch?v=example3",
+        "key_ingredients": [
+          "eggs",
+          "onion",
+          "tomato"
+        ],
+        "protein_grams": 18,
+        "calories": 300,
+        "carbs_grams": 15,
+        "fats_grams": 22,
+        "prep_time_minutes": 10,
+        "is_protein_rich": true,
+        "description": "Spicy scrambled eggs with onion and tomatoes."
+      },
+      {
+        "name": "Rawa Idli",
+        "meal_type": "breakfast",
+        "cuisine_type": "South Indian",
+        "source_type": "Instagram",
+        "source_name": "Cook With Manali",
+        "source_url": "https://www.instagram.com/p/example4",
+        "key_ingredients": [
+          "semolina",
+          "yogurt",
+          "vegetables"
+        ],
+        "protein_grams": 9,
+        "calories": 180,
+        "carbs_grams": 30,
+        "fats_grams": 4,
+        "prep_time_minutes": 25,
+        "is_protein_rich": false,
+        "description": "Steamed semolina cakes flavored with spices and vegetables."
+      },
+      {
+        "name": "Pesarattu",
+        "meal_type": "breakfast",
+        "cuisine_type": "South Indian",
+        "source_type": "YouTube",
+        "source_name": "Vahchef",
+        "source_url": "https://www.youtube.com/watch?v=example5",
+        "key_ingredients": [
+          "green gram",
+          "rice",
+          "onion"
+        ],
+        "protein_grams": 12,
+        "calories": 220,
+        "carbs_grams": 40,
+        "fats_grams": 4,
+        "prep_time_minutes": 30,
+        "is_protein_rich": true,
+        "description": "Moong dal crepes served with chutney."
+      },
+      {
+        "name": "Vegetable Biryani",
+        "meal_type": "lunch",
+        "cuisine_type": "North Indian",
+        "source_type": "Blog",
+        "source_name": "Ministry of Curry",
+        "source_url": "https://www.ministryofcurry.com/vegetable-biryani-recipe",
+        "key_ingredients": [
+          "rice",
+          "mixed vegetables",
+          "spices"
+        ],
+        "protein_grams": 10,
+        "calories": 400,
+        "carbs_grams": 75,
+        "fats_grams": 9,
+        "prep_time_minutes": 45,
+        "is_protein_rich": false,
+        "description": "Flavorful rice dish cooked with assorted vegetables and spices."
+      },
+      {
+        "name": "Chana Masala",
+        "meal_type": "lunch",
+        "cuisine_type": "North Indian",
+        "source_type": "YouTube",
+        "source_name": "Rajshri Food",
+        "source_url": "https://www.youtube.com/watch?v=example6",
+        "key_ingredients": [
+          "chickpeas",
+          "tomato",
+          "spices"
+        ],
+        "protein_grams": 15,
+        "calories": 350,
+        "carbs_grams": 45,
+        "fats_grams": 10,
+        "prep_time_minutes": 30,
+        "is_protein_rich": true,
+        "description": "Spicy chickpeas cooked in a rich tomato gravy."
+      },
+      {
+        "name": "Palak Paneer",
+        "meal_type": "lunch",
+        "cuisine_type": "North Indian",
+        "source_type": "Instagram",
+        "source_name": "Popular Indian Food Creator",
+        "source_url": "https://www.instagram.com/p/example7",
+        "key_ingredients": [
+          "spinach",
+          "paneer",
+          "cream"
+        ],
+        "protein_grams": 20,
+        "calories": 450,
+        "carbs_grams": 12,
+        "fats_grams": 30,
+        "prep_time_minutes": 35,
+        "is_protein_rich": true,
+        "description": "Delicious paneer cubes in a creamy spinach gravy."
+      },
+      {
+        "name": "Sambar Rice",
+        "meal_type": "lunch",
+        "cuisine_type": "South Indian",
+        "source_type": "YouTube",
+        "source_name": "Vismai Food",
+        "source_url": "https://www.youtube.com/watch?v=example8",
+        "key_ingredients": [
+          "rice",
+          "toor dal",
+          "vegetables"
+        ],
+        "protein_grams": 12,
+        "calories": 360,
+        "carbs_grams": 65,
+        "fats_grams": 7,
+        "prep_time_minutes": 40,
+        "is_protein_rich": true,
+        "description": "A hearty meal of rice served with spicy lentil stew."
+      },
+      {
+        "name": "Mixed Vegetable Curry",
+        "meal_type": "lunch",
+        "cuisine_type": "North Indian",
+        "source_type": "Blog",
+        "source_name": "Indian Healthy Recipes",
+        "source_url": "https://www.indianhealthyrecipes.com/mixed-vegetable-curry-recipe",
+        "key_ingredients": [
+          "mixed vegetables",
+          "onion",
+          "spices"
+        ],
+        "protein_grams": 5,
+        "calories": 250,
+        "carbs_grams": 40,
+        "fats_grams": 10,
+        "prep_time_minutes": 30,
+        "is_protein_rich": false,
+        "description": "A vibrant curry made with seasonal vegetables and spices."
+      },
+      {
+        "name": "Khichdi",
+        "meal_type": "lunch",
+        "cuisine_type": "North Indian",
+        "source_type": "YouTube",
+        "source_name": "Sridevi Jasti",
+        "source_url": "https://www.youtube.com/watch?v=example9",
+        "key_ingredients": [
+          "rice",
+          "moong dal",
+          "spices"
+        ],
+        "protein_grams": 15,
+        "calories": 320,
+        "carbs_grams": 60,
+        "fats_grams": 5,
+        "prep_time_minutes": 30,
+        "is_protein_rich": true,
+        "description": "Comforting one-pot dish of rice and lentils."
+      }
+    ]
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-08T16:50:08.337394",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "recipes": [
+      {
+        "name": "Masala Dosa",
+        "meal_type": "breakfast",
+        "cuisine_type": "South Indian",
+        "source_type": "YouTube",
+        "source_name": "Hebbar's Kitchen",
+        "source_url": "https://www.youtube.com/watch?v=example1",
+        "key_ingredients": [
+          "rice",
+          "urad dal",
+          "potato"
+        ],
+        "protein_grams": 11,
+        "calories": 250,
+        "carbs_grams": 45,
+        "fats_grams": 7,
+        "prep_time_minutes": 30,
+        "is_protein_rich": false,
+        "description": "Crispy rice and urad dal crepes filled with spicy potato filling."
+      },
+      {
+        "name": "Upma",
+        "meal_type": "breakfast",
+        "cuisine_type": "South Indian",
+        "source_type": "Blog",
+        "source_name": "Veg Recipes of India",
+        "source_url": "https://www.vegrecipesofindia.com/upma-recipe",
+        "key_ingredients": [
+          "semolina",
+          "mustard seeds",
+          "vegetables"
+        ],
+        "protein_grams": 8,
+        "calories": 220,
+        "carbs_grams": 36,
+        "fats_grams": 7,
+        "prep_time_minutes": 20,
+        "is_protein_rich": false,
+        "description": "Savory semolina porridge cooked with vegetables and spices."
+      },
+      {
+        "name": "Poha",
+        "meal_type": "breakfast",
+        "cuisine_type": "North Indian",
+        "source_type": "YouTube",
+        "source_name": "Nisha Madhulika",
+        "source_url": "https://www.youtube.com/watch?v=example2",
+        "key_ingredients": [
+          "flattened rice",
+          "onion",
+          "peanuts"
+        ],
+        "protein_grams": 6,
+        "calories": 210,
+        "carbs_grams": 34,
+        "fats_grams": 8,
+        "prep_time_minutes": 15,
+        "is_protein_rich": false,
+        "description": "Light and fluffy flattened rice with spices and peanuts."
+      },
+      {
+        "name": "Egg Bhurji",
+        "meal_type": "breakfast",
+        "cuisine_type": "North Indian",
+        "source_type": "YouTube",
+        "source_name": "Sanjeev Kapoor",
+        "source_url": "https://www.youtube.com/watch?v=example3",
+        "key_ingredients": [
+          "eggs",
+          "onion",
+          "tomato"
+        ],
+        "protein_grams": 18,
+        "calories": 300,
+        "carbs_grams": 15,
+        "fats_grams": 22,
+        "prep_time_minutes": 10,
+        "is_protein_rich": true,
+        "description": "Spicy scrambled eggs with onion and tomatoes."
+      },
+      {
+        "name": "Rawa Idli",
+        "meal_type": "breakfast",
+        "cuisine_type": "South Indian",
+        "source_type": "Instagram",
+        "source_name": "Cook With Manali",
+        "source_url": "https://www.instagram.com/p/example4",
+        "key_ingredients": [
+          "semolina",
+          "yogurt",
+          "vegetables"
+        ],
+        "protein_grams": 9,
+        "calories": 180,
+        "carbs_grams": 30,
+        "fats_grams": 4,
+        "prep_time_minutes": 25,
+        "is_protein_rich": false,
+        "description": "Steamed semolina cakes flavored with spices and vegetables."
+      },
+      {
+        "name": "Pesarattu",
+        "meal_type": "breakfast",
+        "cuisine_type": "South Indian",
+        "source_type": "YouTube",
+        "source_name": "Vahchef",
+        "source_url": "https://www.youtube.com/watch?v=example5",
+        "key_ingredients": [
+          "green gram",
+          "rice",
+          "onion"
+        ],
+        "protein_grams": 12,
+        "calories": 220,
+        "carbs_grams": 40,
+        "fats_grams": 4,
+        "prep_time_minutes": 30,
+        "is_protein_rich": true,
+        "description": "Moong dal crepes served with chutney."
+      },
+      {
+        "name": "Vegetable Biryani",
+        "meal_type": "lunch",
+        "cuisine_type": "North Indian",
+        "source_type": "Blog",
+        "source_name": "Ministry of Curry",
+        "source_url": "https://www.ministryofcurry.com/vegetable-biryani-recipe",
+        "key_ingredients": [
+          "rice",
+          "mixed vegetables",
+          "spices"
+        ],
+        "protein_grams": 10,
+        "calories": 400,
+        "carbs_grams": 75,
+        "fats_grams": 9,
+        "prep_time_minutes": 45,
+        "is_protein_rich": false,
+        "description": "Flavorful rice dish cooked with assorted vegetables and spices."
+      },
+      {
+        "name": "Chana Masala",
+        "meal_type": "lunch",
+        "cuisine_type": "North Indian",
+        "source_type": "YouTube",
+        "source_name": "Rajshri Food",
+        "source_url": "https://www.youtube.com/watch?v=example6",
+        "key_ingredients": [
+          "chickpeas",
+          "tomato",
+          "spices"
+        ],
+        "protein_grams": 15,
+        "calories": 350,
+        "carbs_grams": 45,
+        "fats_grams": 10,
+        "prep_time_minutes": 30,
+        "is_protein_rich": true,
+        "description": "Spicy chickpeas cooked in a rich tomato gravy."
+      },
+      {
+        "name": "Palak Paneer",
+        "meal_type": "lunch",
+        "cuisine_type": "North Indian",
+        "source_type": "Instagram",
+        "source_name": "Popular Indian Food Creator",
+        "source_url": "https://www.instagram.com/p/example7",
+        "key_ingredients": [
+          "spinach",
+          "paneer",
+          "cream"
+        ],
+        "protein_grams": 20,
+        "calories": 450,
+        "carbs_grams": 12,
+        "fats_grams": 30,
+        "prep_time_minutes": 35,
+        "is_protein_rich": true,
+        "description": "Delicious paneer cubes in a creamy spinach gravy."
+      },
+      {
+        "name": "Sambar Rice",
+        "meal_type": "lunch",
+        "cuisine_type": "South Indian",
+        "source_type": "YouTube",
+        "source_name": "Vismai Food",
+        "source_url": "https://www.youtube.com/watch?v=example8",
+        "key_ingredients": [
+          "rice",
+          "toor dal",
+          "vegetables"
+        ],
+        "protein_grams": 12,
+        "calories": 360,
+        "carbs_grams": 65,
+        "fats_grams": 7,
+        "prep_time_minutes": 40,
+        "is_protein_rich": true,
+        "description": "A hearty meal of rice served with spicy lentil stew."
+      },
+      {
+        "name": "Mixed Vegetable Curry",
+        "meal_type": "lunch",
+        "cuisine_type": "North Indian",
+        "source_type": "Blog",
+        "source_name": "Indian Healthy Recipes",
+        "source_url": "https://www.indianhealthyrecipes.com/mixed-vegetable-curry-recipe",
+        "key_ingredients": [
+          "mixed vegetables",
+          "onion",
+          "spices"
+        ],
+        "protein_grams": 5,
+        "calories": 250,
+        "carbs_grams": 40,
+        "fats_grams": 10,
+        "prep_time_minutes": 30,
+        "is_protein_rich": false,
+        "description": "A vibrant curry made with seasonal vegetables and spices."
+      },
+      {
+        "name": "Khichdi",
+        "meal_type": "lunch",
+        "cuisine_type": "North Indian",
+        "source_type": "YouTube",
+        "source_name": "Sridevi Jasti",
+        "source_url": "https://www.youtube.com/watch?v=example9",
+        "key_ingredients": [
+          "rice",
+          "moong dal",
+          "spices"
+        ],
+        "protein_grams": 15,
+        "calories": 320,
+        "carbs_grams": 60,
+        "fats_grams": 5,
+        "prep_time_minutes": 30,
+        "is_protein_rich": true,
+        "description": "Comforting one-pot dish of rice and lentils."
+      }
+    ]
+  }
+}

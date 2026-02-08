@@ -1,0 +1,1606 @@
+{
+  "agent_name": "Meal Planning Coordinator",
+  "agent_id": "6988bf3a6f6e7c67fe7e8b53",
+  "agent_purpose": "Orchestrates complete meal planning workflow - researches recipes, curates 6-day meal plan, generates shopping list and nutrition summary",
+  "description": "Manager agent that coordinates Recipe Research, Meal Curator, and Output Formatter sub-agents to produce a complete 6-day meal plan with per-meal nutrition, categorized shopping list, and weekly nutrition summary",
+  "response_schema": {
+    "meal_plan": {
+      "mode": "string",
+      "days": [
+        {
+          "day": "string",
+          "day_number": "number",
+          "breakfast": {
+            "name": "string",
+            "cuisine_type": "string",
+            "source_type": "string",
+            "source_name": "string",
+            "source_url": "string",
+            "calories": "number",
+            "protein_grams": "number",
+            "carbs_grams": "number",
+            "fats_grams": "number",
+            "key_ingredients": [
+              "string"
+            ],
+            "description": "string"
+          },
+          "lunch": {
+            "name": "string",
+            "cuisine_type": "string",
+            "source_type": "string",
+            "source_name": "string",
+            "source_url": "string",
+            "calories": "number",
+            "protein_grams": "number",
+            "carbs_grams": "number",
+            "fats_grams": "number",
+            "key_ingredients": [
+              "string"
+            ],
+            "description": "string"
+          },
+          "daily_totals": {
+            "calories": "number",
+            "protein_grams": "number",
+            "carbs_grams": "number",
+            "fats_grams": "number"
+          }
+        }
+      ],
+      "weekly_averages": {
+        "avg_daily_calories": "number",
+        "avg_daily_protein": "number",
+        "avg_daily_carbs": "number",
+        "avg_daily_fats": "number"
+      }
+    },
+    "shopping_list": {
+      "categories": [
+        {
+          "category_name": "string",
+          "items": [
+            {
+              "name": "string",
+              "quantity": "string",
+              "used_in": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ],
+      "total_items": "number"
+    },
+    "nutrition_summary": {
+      "weekly_totals": {
+        "total_calories": "number",
+        "total_protein": "number",
+        "total_carbs": "number",
+        "total_fats": "number"
+      },
+      "daily_averages": {
+        "avg_calories": "number",
+        "avg_protein": "number",
+        "avg_carbs": "number",
+        "avg_fats": "number"
+      },
+      "macro_split": {
+        "protein_percentage": "number",
+        "carbs_percentage": "number",
+        "fats_percentage": "number"
+      }
+    }
+  },
+  "example_response": {
+    "meal_plan": {
+      "mode": "Protein-Focused",
+      "days": [
+        {
+          "day": "Monday",
+          "day_number": 1,
+          "breakfast": {
+            "name": "Egg Vegetable Dosa",
+            "cuisine_type": "South Indian",
+            "source_type": "Instagram",
+            "source_name": "fit_khurana",
+            "source_url": "https://www.instagram.com/p/protein_dosa_variations",
+            "calories": 385,
+            "protein_grams": 22,
+            "carbs_grams": 42,
+            "fats_grams": 14,
+            "key_ingredients": [
+              "dosa batter",
+              "eggs",
+              "mixed vegetables",
+              "onions",
+              "tomatoes"
+            ],
+            "description": "Crispy South Indian dosa topped with scrambled eggs and colorful vegetables, packed with protein and nutrients"
+          },
+          "lunch": {
+            "name": "Palak Paneer with Brown Rice",
+            "cuisine_type": "North Indian",
+            "source_type": "Blog",
+            "source_name": "Hebbar's Kitchen",
+            "source_url": "https://hebbarskitchen.com/palak-paneer-recipe",
+            "calories": 485,
+            "protein_grams": 26,
+            "carbs_grams": 52,
+            "fats_grams": 18,
+            "key_ingredients": [
+              "paneer",
+              "spinach",
+              "tomatoes",
+              "cream",
+              "brown rice"
+            ],
+            "description": "Creamy spinach curry with cottage cheese cubes served with fiber-rich brown rice, excellent iron and protein source"
+          },
+          "daily_totals": {
+            "calories": 870,
+            "protein_grams": 48,
+            "carbs_grams": 94,
+            "fats_grams": 32
+          }
+        },
+        {
+          "day": "Tuesday",
+          "day_number": 2,
+          "breakfast": {
+            "name": "Paneer Upma",
+            "cuisine_type": "South Indian",
+            "source_type": "Instagram",
+            "source_name": "diningwithdhoot",
+            "source_url": "https://www.instagram.com/p/high_protein_upma",
+            "calories": 395,
+            "protein_grams": 24,
+            "carbs_grams": 45,
+            "fats_grams": 13,
+            "key_ingredients": [
+              "semolina",
+              "paneer",
+              "vegetables",
+              "curry leaves",
+              "mustard seeds"
+            ],
+            "description": "Traditional South Indian semolina breakfast elevated with protein-rich paneer chunks and mixed vegetables"
+          },
+          "lunch": {
+            "name": "Vegetable Hakka Noodles with Paneer",
+            "cuisine_type": "Continental",
+            "source_type": "Instagram",
+            "source_name": "fit_khurana",
+            "source_url": "https://www.instagram.com/p/protein_noodles",
+            "calories": 465,
+            "protein_grams": 22,
+            "carbs_grams": 58,
+            "fats_grams": 16,
+            "key_ingredients": [
+              "hakka noodles",
+              "paneer",
+              "bell peppers",
+              "cabbage",
+              "soy sauce"
+            ],
+            "description": "Indo-Chinese fusion noodles loaded with paneer and colorful vegetables in savory soy-based sauce"
+          },
+          "daily_totals": {
+            "calories": 860,
+            "protein_grams": 46,
+            "carbs_grams": 103,
+            "fats_grams": 29
+          }
+        },
+        {
+          "day": "Wednesday",
+          "day_number": 3,
+          "breakfast": {
+            "name": "Cheese Stuffed Idli",
+            "cuisine_type": "South Indian",
+            "source_type": "Instagram",
+            "source_name": "harry's_kitchen",
+            "source_url": "https://www.instagram.com/p/cheese_idli_protein",
+            "calories": 405,
+            "protein_grams": 23,
+            "carbs_grams": 48,
+            "fats_grams": 14,
+            "key_ingredients": [
+              "idli batter",
+              "mozzarella cheese",
+              "coriander",
+              "green chillies"
+            ],
+            "description": "Soft steamed rice cakes stuffed with melted cheese, a protein-rich twist on classic South Indian breakfast"
+          },
+          "lunch": {
+            "name": "Chana Masala with Jeera Rice",
+            "cuisine_type": "North Indian",
+            "source_type": "Blog",
+            "source_name": "Indian Healthy Recipes",
+            "source_url": "https://www.indianhealthyrecipes.com/chana-masala",
+            "calories": 475,
+            "protein_grams": 24,
+            "carbs_grams": 64,
+            "fats_grams": 12,
+            "key_ingredients": [
+              "chickpeas",
+              "tomatoes",
+              "onions",
+              "garam masala",
+              "basmati rice"
+            ],
+            "description": "Protein-packed chickpea curry in spiced tomato gravy served with aromatic cumin-flavored rice"
+          },
+          "daily_totals": {
+            "calories": 880,
+            "protein_grams": 47,
+            "carbs_grams": 112,
+            "fats_grams": 26
+          }
+        },
+        {
+          "day": "Thursday",
+          "day_number": 4,
+          "breakfast": {
+            "name": "Masala Dosa with Egg",
+            "cuisine_type": "South Indian",
+            "source_type": "Instagram",
+            "source_name": "saransh_goila",
+            "source_url": "https://www.instagram.com/p/egg_masala_dosa",
+            "calories": 420,
+            "protein_grams": 24,
+            "carbs_grams": 51,
+            "fats_grams": 15,
+            "key_ingredients": [
+              "dosa batter",
+              "potato masala",
+              "eggs",
+              "onions",
+              "spices"
+            ],
+            "description": "Classic crispy masala dosa enhanced with protein-rich egg layer, combining traditional and modern flavors"
+          },
+          "lunch": {
+            "name": "Vegetable Biryani with Raita",
+            "cuisine_type": "North Indian",
+            "source_type": "YouTube",
+            "source_name": "Hebbar's Kitchen",
+            "source_url": "https://hebbarskitchen.com/vegetable-biryani-recipe",
+            "calories": 495,
+            "protein_grams": 21,
+            "carbs_grams": 72,
+            "fats_grams": 14,
+            "key_ingredients": [
+              "basmati rice",
+              "mixed vegetables",
+              "yogurt",
+              "biryani spices",
+              "saffron"
+            ],
+            "description": "Fragrant layered rice dish with mixed vegetables and aromatic spices, served with cooling cucumber raita"
+          },
+          "daily_totals": {
+            "calories": 915,
+            "protein_grams": 45,
+            "carbs_grams": 123,
+            "fats_grams": 29
+          }
+        },
+        {
+          "day": "Friday",
+          "day_number": 5,
+          "breakfast": {
+            "name": "Egg Bhurji with Whole Wheat Toast",
+            "cuisine_type": "South Indian",
+            "source_type": "Blog",
+            "source_name": "Indian Healthy Recipes",
+            "source_url": "https://www.indianhealthyrecipes.com/egg-bhurji",
+            "calories": 390,
+            "protein_grams": 26,
+            "carbs_grams": 38,
+            "fats_grams": 15,
+            "key_ingredients": [
+              "eggs",
+              "onions",
+              "tomatoes",
+              "green chillies",
+              "whole wheat bread"
+            ],
+            "description": "Spiced scrambled eggs with onions and tomatoes, served with toasted whole wheat bread for sustained energy"
+          },
+          "lunch": {
+            "name": "Paneer Butter Masala with Roti",
+            "cuisine_type": "North Indian",
+            "source_type": "Instagram",
+            "source_name": "omkar_pawar",
+            "source_url": "https://www.instagram.com/p/paneer_butter_masala_protein",
+            "calories": 505,
+            "protein_grams": 28,
+            "carbs_grams": 48,
+            "fats_grams": 22,
+            "key_ingredients": [
+              "paneer",
+              "tomatoes",
+              "cream",
+              "butter",
+              "whole wheat roti"
+            ],
+            "description": "Rich and creamy cottage cheese curry in buttery tomato sauce, paired with soft whole wheat flatbreads"
+          },
+          "daily_totals": {
+            "calories": 895,
+            "protein_grams": 54,
+            "carbs_grams": 86,
+            "fats_grams": 37
+          }
+        },
+        {
+          "day": "Saturday",
+          "day_number": 6,
+          "breakfast": {
+            "name": "Paneer Tikka Paratha",
+            "cuisine_type": "South Indian",
+            "source_type": "Instagram",
+            "source_name": "fit_khurana",
+            "source_url": "https://www.instagram.com/p/paneer_tikka_paratha",
+            "calories": 435,
+            "protein_grams": 25,
+            "carbs_grams": 46,
+            "fats_grams": 17,
+            "key_ingredients": [
+              "whole wheat flour",
+              "paneer tikka",
+              "yogurt",
+              "tandoori spices"
+            ],
+            "description": "Stuffed flatbread filled with marinated paneer tikka, combining tandoor flavors in a portable breakfast"
+          },
+          "lunch": {
+            "name": "Palak Paneer with Quinoa",
+            "cuisine_type": "North Indian",
+            "source_type": "Blog",
+            "source_name": "Hebbar's Kitchen",
+            "source_url": "https://hebbarskitchen.com/palak-paneer-healthy",
+            "calories": 470,
+            "protein_grams": 27,
+            "carbs_grams": 49,
+            "fats_grams": 17,
+            "key_ingredients": [
+              "paneer",
+              "spinach",
+              "quinoa",
+              "garlic",
+              "cream"
+            ],
+            "description": "Classic spinach-paneer curry served with protein-rich quinoa instead of rice for extra nutritional boost"
+          },
+          "daily_totals": {
+            "calories": 905,
+            "protein_grams": 52,
+            "carbs_grams": 95,
+            "fats_grams": 34
+          }
+        }
+      ],
+      "weekly_averages": {
+        "avg_daily_calories": 888,
+        "avg_daily_protein": 49,
+        "avg_daily_carbs": 102,
+        "avg_daily_fats": 31
+      }
+    },
+    "shopping_list": {
+      "categories": [
+        {
+          "category_name": "Vegetables",
+          "items": [
+            {
+              "name": "Spinach (Palak)",
+              "quantity": "1.8 kg",
+              "used_in": [
+                "Palak Paneer with Brown Rice",
+                "Palak Paneer with Quinoa"
+              ]
+            },
+            {
+              "name": "Onions",
+              "quantity": "1.2 kg",
+              "used_in": [
+                "Egg Vegetable Dosa",
+                "Masala Dosa with Egg",
+                "Egg Bhurji",
+                "Paneer Upma",
+                "Chana Masala",
+                "Vegetable Biryani with Raita",
+                "Paneer Butter Masala with Roti",
+                "Vegetable Hakka Noodles with Paneer"
+              ]
+            },
+            {
+              "name": "Tomatoes",
+              "quantity": "1.5 kg",
+              "used_in": [
+                "Egg Vegetable Dosa",
+                "Masala Dosa with Egg",
+                "Egg Bhurji",
+                "Chana Masala",
+                "Vegetable Biryani with Raita",
+                "Paneer Butter Masala with Roti",
+                "Palak Paneer with Brown Rice",
+                "Palak Paneer with Quinoa"
+              ]
+            },
+            {
+              "name": "Green Chillies",
+              "quantity": "100 g",
+              "used_in": [
+                "Egg Vegetable Dosa",
+                "Paneer Upma",
+                "Masala Dosa with Egg",
+                "Egg Bhurji",
+                "Chana Masala",
+                "Paneer Butter Masala with Roti"
+              ]
+            },
+            {
+              "name": "Carrots",
+              "quantity": "400 g",
+              "used_in": [
+                "Paneer Upma",
+                "Vegetable Hakka Noodles with Paneer",
+                "Vegetable Biryani with Raita"
+              ]
+            },
+            {
+              "name": "Green Beans",
+              "quantity": "350 g",
+              "used_in": [
+                "Paneer Upma",
+                "Vegetable Hakka Noodles with Paneer",
+                "Vegetable Biryani with Raita"
+              ]
+            },
+            {
+              "name": "Bell Peppers (capsicum)",
+              "quantity": "350 g",
+              "used_in": [
+                "Vegetable Hakka Noodles with Paneer",
+                "Vegetable Biryani with Raita",
+                "Egg Vegetable Dosa"
+              ]
+            },
+            {
+              "name": "Cauliflower",
+              "quantity": "200 g",
+              "used_in": [
+                "Vegetable Biryani with Raita"
+              ]
+            },
+            {
+              "name": "Ginger",
+              "quantity": "100 g",
+              "used_in": [
+                "Egg Bhurji",
+                "Paneer Upma",
+                "Chana Masala",
+                "Paneer Butter Masala with Roti",
+                "Palak Paneer with Brown Rice",
+                "Masala Dosa with Egg"
+              ]
+            },
+            {
+              "name": "Garlic",
+              "quantity": "80 g",
+              "used_in": [
+                "Egg Bhurji",
+                "Paneer Upma",
+                "Chana Masala",
+                "Paneer Butter Masala with Roti",
+                "Palak Paneer with Brown Rice",
+                "Masala Dosa with Egg"
+              ]
+            },
+            {
+              "name": "Potato",
+              "quantity": "300 g",
+              "used_in": [
+                "Masala Dosa with Egg",
+                "Vegetable Biryani with Raita"
+              ]
+            },
+            {
+              "name": "Coriander Leaves",
+              "quantity": "1 bunch (100 g)",
+              "used_in": [
+                "Palak Paneer with Brown Rice",
+                "Egg Bhurji",
+                "Chana Masala",
+                "Vegetable Hakka Noodles with Paneer",
+                "Paneer Butter Masala with Roti"
+              ]
+            },
+            {
+              "name": "Lemon",
+              "quantity": "3 pcs",
+              "used_in": [
+                "Vegetable Hakka Noodles with Paneer",
+                "Chana Masala",
+                "Egg Bhurji"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Fruits",
+          "items": [
+            {
+              "name": "None",
+              "quantity": "",
+              "used_in": []
+            }
+          ]
+        },
+        {
+          "category_name": "Dairy & Eggs",
+          "items": [
+            {
+              "name": "Paneer (highlight)",
+              "quantity": "1.45 kg",
+              "used_in": [
+                "Paneer Upma",
+                "Paneer Tikka Paratha",
+                "Palak Paneer with Brown Rice",
+                "Vegetable Hakka Noodles with Paneer",
+                "Paneer Butter Masala with Roti",
+                "Palak Paneer with Quinoa"
+              ]
+            },
+            {
+              "name": "Eggs (highlight)",
+              "quantity": "15 pcs",
+              "used_in": [
+                "Egg Vegetable Dosa",
+                "Masala Dosa with Egg",
+                "Egg Bhurji"
+              ]
+            },
+            {
+              "name": "Cheese (processed, for idli)",
+              "quantity": "120 g",
+              "used_in": [
+                "Cheese Stuffed Idli"
+              ]
+            },
+            {
+              "name": "Curd/Yogurt",
+              "quantity": "450 g",
+              "used_in": [
+                "Vegetable Biryani with Raita"
+              ]
+            },
+            {
+              "name": "Milk",
+              "quantity": "300 ml",
+              "used_in": [
+                "Paneer Butter Masala with Roti",
+                "Egg Bhurji"
+              ]
+            },
+            {
+              "name": "Butter",
+              "quantity": "80 g",
+              "used_in": [
+                "Paneer Butter Masala with Roti"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Grains & Flour",
+          "items": [
+            {
+              "name": "Dosa Batter (Rice & Urad Dal)",
+              "quantity": "600 g",
+              "used_in": [
+                "Egg Vegetable Dosa",
+                "Masala Dosa with Egg"
+              ]
+            },
+            {
+              "name": "Whole Wheat Flour (Atta)",
+              "quantity": "450 g",
+              "used_in": [
+                "Paneer Tikka Paratha",
+                "Roti"
+              ]
+            },
+            {
+              "name": "Idli Batter",
+              "quantity": "300 g",
+              "used_in": [
+                "Cheese Stuffed Idli"
+              ]
+            },
+            {
+              "name": "Brown Rice",
+              "quantity": "270 g (raw)",
+              "used_in": [
+                "Palak Paneer with Brown Rice"
+              ]
+            },
+            {
+              "name": "Jeera Rice (Basmati)",
+              "quantity": "240 g (raw)",
+              "used_in": [
+                "Chana Masala with Jeera Rice"
+              ]
+            },
+            {
+              "name": "Quinoa",
+              "quantity": "180 g (raw)",
+              "used_in": [
+                "Palak Paneer with Quinoa"
+              ]
+            },
+            {
+              "name": "Roti (prepared from wheat flour)",
+              "quantity": "6 pcs (~180 g)",
+              "used_in": [
+                "Paneer Butter Masala with Roti"
+              ]
+            },
+            {
+              "name": "Hakka Noodles (whole wheat preferred)",
+              "quantity": "180 g",
+              "used_in": [
+                "Vegetable Hakka Noodles with Paneer"
+              ]
+            },
+            {
+              "name": "Biryani Rice (Basmati)",
+              "quantity": "210 g (raw)",
+              "used_in": [
+                "Vegetable Biryani with Raita"
+              ]
+            },
+            {
+              "name": "Suji/Rava",
+              "quantity": "120 g",
+              "used_in": [
+                "Paneer Upma"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Lentils & Legumes",
+          "items": [
+            {
+              "name": "Chana (Chickpeas, dried)",
+              "quantity": "120 g",
+              "used_in": [
+                "Chana Masala with Jeera Rice"
+              ]
+            },
+            {
+              "name": "Urad Dal (In batter)",
+              "quantity": "As part of Dosa/Idli batter",
+              "used_in": [
+                "Egg Vegetable Dosa",
+                "Masala Dosa with Egg",
+                "Cheese Stuffed Idli"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Spices & Condiments",
+          "items": [
+            {
+              "name": "Cumin seeds (Jeera)",
+              "quantity": "30 g",
+              "used_in": [
+                "Paneer Upma",
+                "Palak Paneer with Brown Rice",
+                "Jeera Rice",
+                "Chana Masala",
+                "Biryani",
+                "Paneer Butter Masala with Roti"
+              ]
+            },
+            {
+              "name": "Garam Masala",
+              "quantity": "18 g",
+              "used_in": [
+                "Vegetable Biryani with Raita",
+                "Paneer Butter Masala with Roti",
+                "Chana Masala",
+                "Masala Dosa with Egg",
+                "Egg Bhurji"
+              ]
+            },
+            {
+              "name": "Red Chilli Powder",
+              "quantity": "22 g",
+              "used_in": [
+                "Paneer Upma",
+                "Vegetable Biryani with Raita",
+                "Paneer Butter Masala with Roti",
+                "Chana Masala",
+                "Egg Bhurji"
+              ]
+            },
+            {
+              "name": "Turmeric Powder",
+              "quantity": "16 g",
+              "used_in": [
+                "Paneer Upma",
+                "Vegetable Biryani with Raita",
+                "Paneer Butter Masala with Roti",
+                "Chana Masala",
+                "Egg Bhurji"
+              ]
+            },
+            {
+              "name": "Salt",
+              "quantity": "To taste (~70 g)",
+              "used_in": [
+                "All dishes"
+              ]
+            },
+            {
+              "name": "Pepper Powder",
+              "quantity": "7 g",
+              "used_in": [
+                "Egg Bhurji",
+                "Vegetable Hakka Noodles"
+              ]
+            },
+            {
+              "name": "Coriander Powder",
+              "quantity": "13 g",
+              "used_in": [
+                "Chana Masala",
+                "Paneer Butter Masala with Roti"
+              ]
+            },
+            {
+              "name": "Mustard Seeds",
+              "quantity": "10 g",
+              "used_in": [
+                "Paneer Upma",
+                "Masala Dosa with Egg"
+              ]
+            },
+            {
+              "name": "Kasuri Methi",
+              "quantity": "7 g",
+              "used_in": [
+                "Paneer Butter Masala with Roti"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Oils & Fats",
+          "items": [
+            {
+              "name": "Cooking Oil (e.g., sunflower/olive)",
+              "quantity": "190 ml",
+              "used_in": [
+                "All cooked dishes"
+              ]
+            },
+            {
+              "name": "Ghee",
+              "quantity": "50 g",
+              "used_in": [
+                "Paneer Butter Masala with Roti",
+                "Vegetable Biryani",
+                "Paneer Upma"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Others",
+          "items": [
+            {
+              "name": "Raita spices (roasted cumin, chat masala, etc.)",
+              "quantity": "as needed (10 g)",
+              "used_in": [
+                "Vegetable Biryani with Raita"
+              ]
+            },
+            {
+              "name": "Eno/Fruit salt (for Idli, optional)",
+              "quantity": "1 sachet",
+              "used_in": [
+                "Cheese Stuffed Idli"
+              ]
+            }
+          ]
+        }
+      ],
+      "total_items": 43
+    },
+    "nutrition_summary": {
+      "weekly_totals": {
+        "total_calories": 14100,
+        "total_protein": 740,
+        "total_carbs": 1850,
+        "total_fats": 510
+      },
+      "daily_averages": {
+        "avg_calories": 2350,
+        "avg_protein": 123,
+        "avg_carbs": 308,
+        "avg_fats": 85
+      },
+      "macro_split": {
+        "protein_percentage": 21,
+        "carbs_percentage": 52,
+        "fats_percentage": 27
+      }
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-08T17:01:29.948777",
+  "test_message_used": "Hello, provide a sample response",
+  "test_error": "Agent test timed out after 30 seconds",
+  "actual_test_response": {
+    "meal_plan": {
+      "mode": "Protein-Focused",
+      "days": [
+        {
+          "day": "Monday",
+          "day_number": 1,
+          "breakfast": {
+            "name": "Egg Vegetable Dosa",
+            "cuisine_type": "South Indian",
+            "source_type": "Instagram",
+            "source_name": "fit_khurana",
+            "source_url": "https://www.instagram.com/p/protein_dosa_variations",
+            "calories": 385,
+            "protein_grams": 22,
+            "carbs_grams": 42,
+            "fats_grams": 14,
+            "key_ingredients": [
+              "dosa batter",
+              "eggs",
+              "mixed vegetables",
+              "onions",
+              "tomatoes"
+            ],
+            "description": "Crispy South Indian dosa topped with scrambled eggs and colorful vegetables, packed with protein and nutrients"
+          },
+          "lunch": {
+            "name": "Palak Paneer with Brown Rice",
+            "cuisine_type": "North Indian",
+            "source_type": "Blog",
+            "source_name": "Hebbar's Kitchen",
+            "source_url": "https://hebbarskitchen.com/palak-paneer-recipe",
+            "calories": 485,
+            "protein_grams": 26,
+            "carbs_grams": 52,
+            "fats_grams": 18,
+            "key_ingredients": [
+              "paneer",
+              "spinach",
+              "tomatoes",
+              "cream",
+              "brown rice"
+            ],
+            "description": "Creamy spinach curry with cottage cheese cubes served with fiber-rich brown rice, excellent iron and protein source"
+          },
+          "daily_totals": {
+            "calories": 870,
+            "protein_grams": 48,
+            "carbs_grams": 94,
+            "fats_grams": 32
+          }
+        },
+        {
+          "day": "Tuesday",
+          "day_number": 2,
+          "breakfast": {
+            "name": "Paneer Upma",
+            "cuisine_type": "South Indian",
+            "source_type": "Instagram",
+            "source_name": "diningwithdhoot",
+            "source_url": "https://www.instagram.com/p/high_protein_upma",
+            "calories": 395,
+            "protein_grams": 24,
+            "carbs_grams": 45,
+            "fats_grams": 13,
+            "key_ingredients": [
+              "semolina",
+              "paneer",
+              "vegetables",
+              "curry leaves",
+              "mustard seeds"
+            ],
+            "description": "Traditional South Indian semolina breakfast elevated with protein-rich paneer chunks and mixed vegetables"
+          },
+          "lunch": {
+            "name": "Vegetable Hakka Noodles with Paneer",
+            "cuisine_type": "Continental",
+            "source_type": "Instagram",
+            "source_name": "fit_khurana",
+            "source_url": "https://www.instagram.com/p/protein_noodles",
+            "calories": 465,
+            "protein_grams": 22,
+            "carbs_grams": 58,
+            "fats_grams": 16,
+            "key_ingredients": [
+              "hakka noodles",
+              "paneer",
+              "bell peppers",
+              "cabbage",
+              "soy sauce"
+            ],
+            "description": "Indo-Chinese fusion noodles loaded with paneer and colorful vegetables in savory soy-based sauce"
+          },
+          "daily_totals": {
+            "calories": 860,
+            "protein_grams": 46,
+            "carbs_grams": 103,
+            "fats_grams": 29
+          }
+        },
+        {
+          "day": "Wednesday",
+          "day_number": 3,
+          "breakfast": {
+            "name": "Cheese Stuffed Idli",
+            "cuisine_type": "South Indian",
+            "source_type": "Instagram",
+            "source_name": "harry's_kitchen",
+            "source_url": "https://www.instagram.com/p/cheese_idli_protein",
+            "calories": 405,
+            "protein_grams": 23,
+            "carbs_grams": 48,
+            "fats_grams": 14,
+            "key_ingredients": [
+              "idli batter",
+              "mozzarella cheese",
+              "coriander",
+              "green chillies"
+            ],
+            "description": "Soft steamed rice cakes stuffed with melted cheese, a protein-rich twist on classic South Indian breakfast"
+          },
+          "lunch": {
+            "name": "Chana Masala with Jeera Rice",
+            "cuisine_type": "North Indian",
+            "source_type": "Blog",
+            "source_name": "Indian Healthy Recipes",
+            "source_url": "https://www.indianhealthyrecipes.com/chana-masala",
+            "calories": 475,
+            "protein_grams": 24,
+            "carbs_grams": 64,
+            "fats_grams": 12,
+            "key_ingredients": [
+              "chickpeas",
+              "tomatoes",
+              "onions",
+              "garam masala",
+              "basmati rice"
+            ],
+            "description": "Protein-packed chickpea curry in spiced tomato gravy served with aromatic cumin-flavored rice"
+          },
+          "daily_totals": {
+            "calories": 880,
+            "protein_grams": 47,
+            "carbs_grams": 112,
+            "fats_grams": 26
+          }
+        },
+        {
+          "day": "Thursday",
+          "day_number": 4,
+          "breakfast": {
+            "name": "Masala Dosa with Egg",
+            "cuisine_type": "South Indian",
+            "source_type": "Instagram",
+            "source_name": "saransh_goila",
+            "source_url": "https://www.instagram.com/p/egg_masala_dosa",
+            "calories": 420,
+            "protein_grams": 24,
+            "carbs_grams": 51,
+            "fats_grams": 15,
+            "key_ingredients": [
+              "dosa batter",
+              "potato masala",
+              "eggs",
+              "onions",
+              "spices"
+            ],
+            "description": "Classic crispy masala dosa enhanced with protein-rich egg layer, combining traditional and modern flavors"
+          },
+          "lunch": {
+            "name": "Vegetable Biryani with Raita",
+            "cuisine_type": "North Indian",
+            "source_type": "YouTube",
+            "source_name": "Hebbar's Kitchen",
+            "source_url": "https://hebbarskitchen.com/vegetable-biryani-recipe",
+            "calories": 495,
+            "protein_grams": 21,
+            "carbs_grams": 72,
+            "fats_grams": 14,
+            "key_ingredients": [
+              "basmati rice",
+              "mixed vegetables",
+              "yogurt",
+              "biryani spices",
+              "saffron"
+            ],
+            "description": "Fragrant layered rice dish with mixed vegetables and aromatic spices, served with cooling cucumber raita"
+          },
+          "daily_totals": {
+            "calories": 915,
+            "protein_grams": 45,
+            "carbs_grams": 123,
+            "fats_grams": 29
+          }
+        },
+        {
+          "day": "Friday",
+          "day_number": 5,
+          "breakfast": {
+            "name": "Egg Bhurji with Whole Wheat Toast",
+            "cuisine_type": "South Indian",
+            "source_type": "Blog",
+            "source_name": "Indian Healthy Recipes",
+            "source_url": "https://www.indianhealthyrecipes.com/egg-bhurji",
+            "calories": 390,
+            "protein_grams": 26,
+            "carbs_grams": 38,
+            "fats_grams": 15,
+            "key_ingredients": [
+              "eggs",
+              "onions",
+              "tomatoes",
+              "green chillies",
+              "whole wheat bread"
+            ],
+            "description": "Spiced scrambled eggs with onions and tomatoes, served with toasted whole wheat bread for sustained energy"
+          },
+          "lunch": {
+            "name": "Paneer Butter Masala with Roti",
+            "cuisine_type": "North Indian",
+            "source_type": "Instagram",
+            "source_name": "omkar_pawar",
+            "source_url": "https://www.instagram.com/p/paneer_butter_masala_protein",
+            "calories": 505,
+            "protein_grams": 28,
+            "carbs_grams": 48,
+            "fats_grams": 22,
+            "key_ingredients": [
+              "paneer",
+              "tomatoes",
+              "cream",
+              "butter",
+              "whole wheat roti"
+            ],
+            "description": "Rich and creamy cottage cheese curry in buttery tomato sauce, paired with soft whole wheat flatbreads"
+          },
+          "daily_totals": {
+            "calories": 895,
+            "protein_grams": 54,
+            "carbs_grams": 86,
+            "fats_grams": 37
+          }
+        },
+        {
+          "day": "Saturday",
+          "day_number": 6,
+          "breakfast": {
+            "name": "Paneer Tikka Paratha",
+            "cuisine_type": "South Indian",
+            "source_type": "Instagram",
+            "source_name": "fit_khurana",
+            "source_url": "https://www.instagram.com/p/paneer_tikka_paratha",
+            "calories": 435,
+            "protein_grams": 25,
+            "carbs_grams": 46,
+            "fats_grams": 17,
+            "key_ingredients": [
+              "whole wheat flour",
+              "paneer tikka",
+              "yogurt",
+              "tandoori spices"
+            ],
+            "description": "Stuffed flatbread filled with marinated paneer tikka, combining tandoor flavors in a portable breakfast"
+          },
+          "lunch": {
+            "name": "Palak Paneer with Quinoa",
+            "cuisine_type": "North Indian",
+            "source_type": "Blog",
+            "source_name": "Hebbar's Kitchen",
+            "source_url": "https://hebbarskitchen.com/palak-paneer-healthy",
+            "calories": 470,
+            "protein_grams": 27,
+            "carbs_grams": 49,
+            "fats_grams": 17,
+            "key_ingredients": [
+              "paneer",
+              "spinach",
+              "quinoa",
+              "garlic",
+              "cream"
+            ],
+            "description": "Classic spinach-paneer curry served with protein-rich quinoa instead of rice for extra nutritional boost"
+          },
+          "daily_totals": {
+            "calories": 905,
+            "protein_grams": 52,
+            "carbs_grams": 95,
+            "fats_grams": 34
+          }
+        }
+      ],
+      "weekly_averages": {
+        "avg_daily_calories": 888,
+        "avg_daily_protein": 49,
+        "avg_daily_carbs": 102,
+        "avg_daily_fats": 31
+      }
+    },
+    "shopping_list": {
+      "categories": [
+        {
+          "category_name": "Vegetables",
+          "items": [
+            {
+              "name": "Spinach (Palak)",
+              "quantity": "1.8 kg",
+              "used_in": [
+                "Palak Paneer with Brown Rice",
+                "Palak Paneer with Quinoa"
+              ]
+            },
+            {
+              "name": "Onions",
+              "quantity": "1.2 kg",
+              "used_in": [
+                "Egg Vegetable Dosa",
+                "Masala Dosa with Egg",
+                "Egg Bhurji",
+                "Paneer Upma",
+                "Chana Masala",
+                "Vegetable Biryani with Raita",
+                "Paneer Butter Masala with Roti",
+                "Vegetable Hakka Noodles with Paneer"
+              ]
+            },
+            {
+              "name": "Tomatoes",
+              "quantity": "1.5 kg",
+              "used_in": [
+                "Egg Vegetable Dosa",
+                "Masala Dosa with Egg",
+                "Egg Bhurji",
+                "Chana Masala",
+                "Vegetable Biryani with Raita",
+                "Paneer Butter Masala with Roti",
+                "Palak Paneer with Brown Rice",
+                "Palak Paneer with Quinoa"
+              ]
+            },
+            {
+              "name": "Green Chillies",
+              "quantity": "100 g",
+              "used_in": [
+                "Egg Vegetable Dosa",
+                "Paneer Upma",
+                "Masala Dosa with Egg",
+                "Egg Bhurji",
+                "Chana Masala",
+                "Paneer Butter Masala with Roti"
+              ]
+            },
+            {
+              "name": "Carrots",
+              "quantity": "400 g",
+              "used_in": [
+                "Paneer Upma",
+                "Vegetable Hakka Noodles with Paneer",
+                "Vegetable Biryani with Raita"
+              ]
+            },
+            {
+              "name": "Green Beans",
+              "quantity": "350 g",
+              "used_in": [
+                "Paneer Upma",
+                "Vegetable Hakka Noodles with Paneer",
+                "Vegetable Biryani with Raita"
+              ]
+            },
+            {
+              "name": "Bell Peppers (capsicum)",
+              "quantity": "350 g",
+              "used_in": [
+                "Vegetable Hakka Noodles with Paneer",
+                "Vegetable Biryani with Raita",
+                "Egg Vegetable Dosa"
+              ]
+            },
+            {
+              "name": "Cauliflower",
+              "quantity": "200 g",
+              "used_in": [
+                "Vegetable Biryani with Raita"
+              ]
+            },
+            {
+              "name": "Ginger",
+              "quantity": "100 g",
+              "used_in": [
+                "Egg Bhurji",
+                "Paneer Upma",
+                "Chana Masala",
+                "Paneer Butter Masala with Roti",
+                "Palak Paneer with Brown Rice",
+                "Masala Dosa with Egg"
+              ]
+            },
+            {
+              "name": "Garlic",
+              "quantity": "80 g",
+              "used_in": [
+                "Egg Bhurji",
+                "Paneer Upma",
+                "Chana Masala",
+                "Paneer Butter Masala with Roti",
+                "Palak Paneer with Brown Rice",
+                "Masala Dosa with Egg"
+              ]
+            },
+            {
+              "name": "Potato",
+              "quantity": "300 g",
+              "used_in": [
+                "Masala Dosa with Egg",
+                "Vegetable Biryani with Raita"
+              ]
+            },
+            {
+              "name": "Coriander Leaves",
+              "quantity": "1 bunch (100 g)",
+              "used_in": [
+                "Palak Paneer with Brown Rice",
+                "Egg Bhurji",
+                "Chana Masala",
+                "Vegetable Hakka Noodles with Paneer",
+                "Paneer Butter Masala with Roti"
+              ]
+            },
+            {
+              "name": "Lemon",
+              "quantity": "3 pcs",
+              "used_in": [
+                "Vegetable Hakka Noodles with Paneer",
+                "Chana Masala",
+                "Egg Bhurji"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Fruits",
+          "items": [
+            {
+              "name": "None",
+              "quantity": "",
+              "used_in": []
+            }
+          ]
+        },
+        {
+          "category_name": "Dairy & Eggs",
+          "items": [
+            {
+              "name": "Paneer (highlight)",
+              "quantity": "1.45 kg",
+              "used_in": [
+                "Paneer Upma",
+                "Paneer Tikka Paratha",
+                "Palak Paneer with Brown Rice",
+                "Vegetable Hakka Noodles with Paneer",
+                "Paneer Butter Masala with Roti",
+                "Palak Paneer with Quinoa"
+              ]
+            },
+            {
+              "name": "Eggs (highlight)",
+              "quantity": "15 pcs",
+              "used_in": [
+                "Egg Vegetable Dosa",
+                "Masala Dosa with Egg",
+                "Egg Bhurji"
+              ]
+            },
+            {
+              "name": "Cheese (processed, for idli)",
+              "quantity": "120 g",
+              "used_in": [
+                "Cheese Stuffed Idli"
+              ]
+            },
+            {
+              "name": "Curd/Yogurt",
+              "quantity": "450 g",
+              "used_in": [
+                "Vegetable Biryani with Raita"
+              ]
+            },
+            {
+              "name": "Milk",
+              "quantity": "300 ml",
+              "used_in": [
+                "Paneer Butter Masala with Roti",
+                "Egg Bhurji"
+              ]
+            },
+            {
+              "name": "Butter",
+              "quantity": "80 g",
+              "used_in": [
+                "Paneer Butter Masala with Roti"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Grains & Flour",
+          "items": [
+            {
+              "name": "Dosa Batter (Rice & Urad Dal)",
+              "quantity": "600 g",
+              "used_in": [
+                "Egg Vegetable Dosa",
+                "Masala Dosa with Egg"
+              ]
+            },
+            {
+              "name": "Whole Wheat Flour (Atta)",
+              "quantity": "450 g",
+              "used_in": [
+                "Paneer Tikka Paratha",
+                "Roti"
+              ]
+            },
+            {
+              "name": "Idli Batter",
+              "quantity": "300 g",
+              "used_in": [
+                "Cheese Stuffed Idli"
+              ]
+            },
+            {
+              "name": "Brown Rice",
+              "quantity": "270 g (raw)",
+              "used_in": [
+                "Palak Paneer with Brown Rice"
+              ]
+            },
+            {
+              "name": "Jeera Rice (Basmati)",
+              "quantity": "240 g (raw)",
+              "used_in": [
+                "Chana Masala with Jeera Rice"
+              ]
+            },
+            {
+              "name": "Quinoa",
+              "quantity": "180 g (raw)",
+              "used_in": [
+                "Palak Paneer with Quinoa"
+              ]
+            },
+            {
+              "name": "Roti (prepared from wheat flour)",
+              "quantity": "6 pcs (~180 g)",
+              "used_in": [
+                "Paneer Butter Masala with Roti"
+              ]
+            },
+            {
+              "name": "Hakka Noodles (whole wheat preferred)",
+              "quantity": "180 g",
+              "used_in": [
+                "Vegetable Hakka Noodles with Paneer"
+              ]
+            },
+            {
+              "name": "Biryani Rice (Basmati)",
+              "quantity": "210 g (raw)",
+              "used_in": [
+                "Vegetable Biryani with Raita"
+              ]
+            },
+            {
+              "name": "Suji/Rava",
+              "quantity": "120 g",
+              "used_in": [
+                "Paneer Upma"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Lentils & Legumes",
+          "items": [
+            {
+              "name": "Chana (Chickpeas, dried)",
+              "quantity": "120 g",
+              "used_in": [
+                "Chana Masala with Jeera Rice"
+              ]
+            },
+            {
+              "name": "Urad Dal (In batter)",
+              "quantity": "As part of Dosa/Idli batter",
+              "used_in": [
+                "Egg Vegetable Dosa",
+                "Masala Dosa with Egg",
+                "Cheese Stuffed Idli"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Spices & Condiments",
+          "items": [
+            {
+              "name": "Cumin seeds (Jeera)",
+              "quantity": "30 g",
+              "used_in": [
+                "Paneer Upma",
+                "Palak Paneer with Brown Rice",
+                "Jeera Rice",
+                "Chana Masala",
+                "Biryani",
+                "Paneer Butter Masala with Roti"
+              ]
+            },
+            {
+              "name": "Garam Masala",
+              "quantity": "18 g",
+              "used_in": [
+                "Vegetable Biryani with Raita",
+                "Paneer Butter Masala with Roti",
+                "Chana Masala",
+                "Masala Dosa with Egg",
+                "Egg Bhurji"
+              ]
+            },
+            {
+              "name": "Red Chilli Powder",
+              "quantity": "22 g",
+              "used_in": [
+                "Paneer Upma",
+                "Vegetable Biryani with Raita",
+                "Paneer Butter Masala with Roti",
+                "Chana Masala",
+                "Egg Bhurji"
+              ]
+            },
+            {
+              "name": "Turmeric Powder",
+              "quantity": "16 g",
+              "used_in": [
+                "Paneer Upma",
+                "Vegetable Biryani with Raita",
+                "Paneer Butter Masala with Roti",
+                "Chana Masala",
+                "Egg Bhurji"
+              ]
+            },
+            {
+              "name": "Salt",
+              "quantity": "To taste (~70 g)",
+              "used_in": [
+                "All dishes"
+              ]
+            },
+            {
+              "name": "Pepper Powder",
+              "quantity": "7 g",
+              "used_in": [
+                "Egg Bhurji",
+                "Vegetable Hakka Noodles"
+              ]
+            },
+            {
+              "name": "Coriander Powder",
+              "quantity": "13 g",
+              "used_in": [
+                "Chana Masala",
+                "Paneer Butter Masala with Roti"
+              ]
+            },
+            {
+              "name": "Mustard Seeds",
+              "quantity": "10 g",
+              "used_in": [
+                "Paneer Upma",
+                "Masala Dosa with Egg"
+              ]
+            },
+            {
+              "name": "Kasuri Methi",
+              "quantity": "7 g",
+              "used_in": [
+                "Paneer Butter Masala with Roti"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Oils & Fats",
+          "items": [
+            {
+              "name": "Cooking Oil (e.g., sunflower/olive)",
+              "quantity": "190 ml",
+              "used_in": [
+                "All cooked dishes"
+              ]
+            },
+            {
+              "name": "Ghee",
+              "quantity": "50 g",
+              "used_in": [
+                "Paneer Butter Masala with Roti",
+                "Vegetable Biryani",
+                "Paneer Upma"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Others",
+          "items": [
+            {
+              "name": "Raita spices (roasted cumin, chat masala, etc.)",
+              "quantity": "as needed (10 g)",
+              "used_in": [
+                "Vegetable Biryani with Raita"
+              ]
+            },
+            {
+              "name": "Eno/Fruit salt (for Idli, optional)",
+              "quantity": "1 sachet",
+              "used_in": [
+                "Cheese Stuffed Idli"
+              ]
+            }
+          ]
+        }
+      ],
+      "total_items": 43
+    },
+    "nutrition_summary": {
+      "weekly_totals": {
+        "total_calories": 14100,
+        "total_protein": 740,
+        "total_carbs": 1850,
+        "total_fats": 510
+      },
+      "daily_averages": {
+        "avg_calories": 2350,
+        "avg_protein": 123,
+        "avg_carbs": 308,
+        "avg_fats": 85
+      },
+      "macro_split": {
+        "protein_percentage": 21,
+        "carbs_percentage": 52,
+        "fats_percentage": 27
+      }
+    }
+  },
+  "test_passed": false
+}

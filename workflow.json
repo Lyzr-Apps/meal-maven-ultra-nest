@@ -1,0 +1,35 @@
+{
+  "agents": [
+    {
+      "id": "6988bf3a6f6e7c67fe7e8b53",
+      "name": "Meal Planning Coordinator",
+      "type": "manager",
+      "description": "Orchestrates the meal planning workflow"
+    },
+    {
+      "id": "6988bea74b8f2695557f93f0",
+      "name": "Recipe Research Agent",
+      "type": "sub-agent",
+      "description": "Searches for Indian recipes"
+    },
+    {
+      "id": "6988bedc4b8f2695557f93f1",
+      "name": "Meal Curator Agent",
+      "type": "sub-agent",
+      "description": "Curates 6-day meal plans"
+    },
+    {
+      "id": "6988bf0f941252c267af72b5",
+      "name": "Output Formatter Agent",
+      "type": "sub-agent",
+      "description": "Formats shopping list and nutrition"
+    }
+  ],
+  "knowledge_bases": [
+    {
+      "rag_id": "6988be8ade7de278e55d2d49",
+      "name": "MealCraft Meals Collection",
+      "used_by": "Meal Curator Agent"
+    }
+  ]
+}

@@ -1,0 +1,629 @@
+{
+  "agent_name": "Output Formatter Agent",
+  "agent_id": "6988bf0f941252c267af72b5",
+  "agent_purpose": "output_formatting",
+  "description": "Generates shopping list and nutrition summary",
+  "response_schema": {
+    "shopping_list": {
+      "categories": [
+        {
+          "category_name": "string",
+          "items": [
+            {
+              "name": "string",
+              "quantity": "string",
+              "used_in": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ],
+      "total_items": "number"
+    },
+    "nutrition_summary": {
+      "weekly_totals": {
+        "total_calories": "number",
+        "total_protein": "number",
+        "total_carbs": "number",
+        "total_fats": "number"
+      },
+      "daily_averages": {
+        "avg_calories": "number",
+        "avg_protein": "number",
+        "avg_carbs": "number",
+        "avg_fats": "number"
+      },
+      "macro_split": {
+        "protein_percentage": "number",
+        "carbs_percentage": "number",
+        "fats_percentage": "number"
+      }
+    }
+  },
+  "example_response": {
+    "shopping_list": {
+      "categories": [
+        {
+          "category_name": "Vegetables",
+          "items": [
+            {
+              "name": "Spinach",
+              "quantity": "800 g",
+              "used_in": [
+                "Spinach & Feta Omelette",
+                "Chickpea Spinach Curry"
+              ]
+            },
+            {
+              "name": "Tomatoes",
+              "quantity": "1 kg",
+              "used_in": [
+                "Chickpea Spinach Curry",
+                "Grilled Chicken Salad",
+                "Vegetarian Stir Fry"
+              ]
+            },
+            {
+              "name": "Bell Pepper",
+              "quantity": "4 large",
+              "used_in": [
+                "Vegetarian Stir Fry",
+                "Grilled Chicken Salad"
+              ]
+            },
+            {
+              "name": "Broccoli",
+              "quantity": "500 g",
+              "used_in": [
+                "Vegetarian Stir Fry"
+              ]
+            },
+            {
+              "name": "Red Onion",
+              "quantity": "3 medium",
+              "used_in": [
+                "Chickpea Spinach Curry",
+                "Vegetarian Stir Fry",
+                "Tuna Wrap"
+              ]
+            },
+            {
+              "name": "Cucumber",
+              "quantity": "3 medium",
+              "used_in": [
+                "Grilled Chicken Salad",
+                "Tuna Wrap"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Fruits",
+          "items": [
+            {
+              "name": "Avocado",
+              "quantity": "4 medium",
+              "used_in": [
+                "Tuna Wrap",
+                "Breakfast Toast"
+              ]
+            },
+            {
+              "name": "Blueberries",
+              "quantity": "300 g",
+              "used_in": [
+                "Oatmeal with Blueberries"
+              ]
+            },
+            {
+              "name": "Banana",
+              "quantity": "4 large",
+              "used_in": [
+                "Oatmeal with Blueberries",
+                "Breakfast Toast"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Dairy & Eggs",
+          "items": [
+            {
+              "name": "Eggs",
+              "quantity": "12 large",
+              "used_in": [
+                "Spinach & Feta Omelette",
+                "Breakfast Toast"
+              ]
+            },
+            {
+              "name": "Feta Cheese",
+              "quantity": "200 g",
+              "used_in": [
+                "Spinach & Feta Omelette",
+                "Grilled Chicken Salad"
+              ]
+            },
+            {
+              "name": "Greek Yogurt",
+              "quantity": "600 g",
+              "used_in": [
+                "Breakfast Parfait",
+                "Oatmeal with Blueberries"
+              ]
+            },
+            {
+              "name": "Milk",
+              "quantity": "1 liter",
+              "used_in": [
+                "Oatmeal with Blueberries"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Grains & Flour",
+          "items": [
+            {
+              "name": "Whole Wheat Bread",
+              "quantity": "1 loaf",
+              "used_in": [
+                "Tuna Wrap",
+                "Breakfast Toast"
+              ]
+            },
+            {
+              "name": "Tortilla Wraps",
+              "quantity": "6 large",
+              "used_in": [
+                "Tuna Wrap"
+              ]
+            },
+            {
+              "name": "Oats",
+              "quantity": "450 g",
+              "used_in": [
+                "Oatmeal with Blueberries",
+                "Breakfast Parfait"
+              ]
+            },
+            {
+              "name": "Brown Rice",
+              "quantity": "300 g",
+              "used_in": [
+                "Vegetarian Stir Fry"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Lentils & Legumes",
+          "items": [
+            {
+              "name": "Chickpeas (canned)",
+              "quantity": "2 cans (400 g each)",
+              "used_in": [
+                "Chickpea Spinach Curry"
+              ]
+            },
+            {
+              "name": "Lentils (dried)",
+              "quantity": "250 g",
+              "used_in": [
+                "Vegetarian Stir Fry"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Spices & Condiments",
+          "items": [
+            {
+              "name": "Olive Oil",
+              "quantity": "120 ml",
+              "used_in": [
+                "Spinach & Feta Omelette",
+                "Vegetarian Stir Fry",
+                "Grilled Chicken Salad"
+              ]
+            },
+            {
+              "name": "Black Pepper",
+              "quantity": "to taste",
+              "used_in": [
+                "Spinach & Feta Omelette",
+                "Chickpea Spinach Curry",
+                "Vegetarian Stir Fry",
+                "Grilled Chicken Salad"
+              ]
+            },
+            {
+              "name": "Salt",
+              "quantity": "to taste",
+              "used_in": [
+                "Multiple dishes"
+              ]
+            },
+            {
+              "name": "Curry Powder",
+              "quantity": "2 tbsp",
+              "used_in": [
+                "Chickpea Spinach Curry"
+              ]
+            },
+            {
+              "name": "Lemon Juice",
+              "quantity": "3 tbsp",
+              "used_in": [
+                "Grilled Chicken Salad",
+                "Tuna Wrap"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Oils & Fats",
+          "items": [
+            {
+              "name": "Butter",
+              "quantity": "60 g",
+              "used_in": [
+                "Breakfast Toast",
+                "Oatmeal with Blueberries"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Others",
+          "items": [
+            {
+              "name": "Chicken Breast",
+              "quantity": "600 g",
+              "used_in": [
+                "Grilled Chicken Salad"
+              ]
+            },
+            {
+              "name": "Tuna (canned in water)",
+              "quantity": "2 cans (160 g each)",
+              "used_in": [
+                "Tuna Wrap"
+              ]
+            },
+            {
+              "name": "Honey",
+              "quantity": "3 tbsp",
+              "used_in": [
+                "Oatmeal with Blueberries",
+                "Breakfast Parfait"
+              ]
+            },
+            {
+              "name": "Chia Seeds",
+              "quantity": "60 g",
+              "used_in": [
+                "Breakfast Parfait"
+              ]
+            }
+          ]
+        }
+      ],
+      "total_items": 28
+    },
+    "nutrition_summary": {
+      "weekly_totals": {
+        "total_calories": 11900,
+        "total_protein": 732,
+        "total_carbs": 1400,
+        "total_fats": 390
+      },
+      "daily_averages": {
+        "avg_calories": 1983,
+        "avg_protein": 122,
+        "avg_carbs": 233,
+        "avg_fats": 65
+      },
+      "macro_split": {
+        "protein_percentage": 25,
+        "carbs_percentage": 47,
+        "fats_percentage": 28
+      }
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-08T16:51:51.428959",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "shopping_list": {
+      "categories": [
+        {
+          "category_name": "Vegetables",
+          "items": [
+            {
+              "name": "Spinach",
+              "quantity": "800 g",
+              "used_in": [
+                "Spinach & Feta Omelette",
+                "Chickpea Spinach Curry"
+              ]
+            },
+            {
+              "name": "Tomatoes",
+              "quantity": "1 kg",
+              "used_in": [
+                "Chickpea Spinach Curry",
+                "Grilled Chicken Salad",
+                "Vegetarian Stir Fry"
+              ]
+            },
+            {
+              "name": "Bell Pepper",
+              "quantity": "4 large",
+              "used_in": [
+                "Vegetarian Stir Fry",
+                "Grilled Chicken Salad"
+              ]
+            },
+            {
+              "name": "Broccoli",
+              "quantity": "500 g",
+              "used_in": [
+                "Vegetarian Stir Fry"
+              ]
+            },
+            {
+              "name": "Red Onion",
+              "quantity": "3 medium",
+              "used_in": [
+                "Chickpea Spinach Curry",
+                "Vegetarian Stir Fry",
+                "Tuna Wrap"
+              ]
+            },
+            {
+              "name": "Cucumber",
+              "quantity": "3 medium",
+              "used_in": [
+                "Grilled Chicken Salad",
+                "Tuna Wrap"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Fruits",
+          "items": [
+            {
+              "name": "Avocado",
+              "quantity": "4 medium",
+              "used_in": [
+                "Tuna Wrap",
+                "Breakfast Toast"
+              ]
+            },
+            {
+              "name": "Blueberries",
+              "quantity": "300 g",
+              "used_in": [
+                "Oatmeal with Blueberries"
+              ]
+            },
+            {
+              "name": "Banana",
+              "quantity": "4 large",
+              "used_in": [
+                "Oatmeal with Blueberries",
+                "Breakfast Toast"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Dairy & Eggs",
+          "items": [
+            {
+              "name": "Eggs",
+              "quantity": "12 large",
+              "used_in": [
+                "Spinach & Feta Omelette",
+                "Breakfast Toast"
+              ]
+            },
+            {
+              "name": "Feta Cheese",
+              "quantity": "200 g",
+              "used_in": [
+                "Spinach & Feta Omelette",
+                "Grilled Chicken Salad"
+              ]
+            },
+            {
+              "name": "Greek Yogurt",
+              "quantity": "600 g",
+              "used_in": [
+                "Breakfast Parfait",
+                "Oatmeal with Blueberries"
+              ]
+            },
+            {
+              "name": "Milk",
+              "quantity": "1 liter",
+              "used_in": [
+                "Oatmeal with Blueberries"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Grains & Flour",
+          "items": [
+            {
+              "name": "Whole Wheat Bread",
+              "quantity": "1 loaf",
+              "used_in": [
+                "Tuna Wrap",
+                "Breakfast Toast"
+              ]
+            },
+            {
+              "name": "Tortilla Wraps",
+              "quantity": "6 large",
+              "used_in": [
+                "Tuna Wrap"
+              ]
+            },
+            {
+              "name": "Oats",
+              "quantity": "450 g",
+              "used_in": [
+                "Oatmeal with Blueberries",
+                "Breakfast Parfait"
+              ]
+            },
+            {
+              "name": "Brown Rice",
+              "quantity": "300 g",
+              "used_in": [
+                "Vegetarian Stir Fry"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Lentils & Legumes",
+          "items": [
+            {
+              "name": "Chickpeas (canned)",
+              "quantity": "2 cans (400 g each)",
+              "used_in": [
+                "Chickpea Spinach Curry"
+              ]
+            },
+            {
+              "name": "Lentils (dried)",
+              "quantity": "250 g",
+              "used_in": [
+                "Vegetarian Stir Fry"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Spices & Condiments",
+          "items": [
+            {
+              "name": "Olive Oil",
+              "quantity": "120 ml",
+              "used_in": [
+                "Spinach & Feta Omelette",
+                "Vegetarian Stir Fry",
+                "Grilled Chicken Salad"
+              ]
+            },
+            {
+              "name": "Black Pepper",
+              "quantity": "to taste",
+              "used_in": [
+                "Spinach & Feta Omelette",
+                "Chickpea Spinach Curry",
+                "Vegetarian Stir Fry",
+                "Grilled Chicken Salad"
+              ]
+            },
+            {
+              "name": "Salt",
+              "quantity": "to taste",
+              "used_in": [
+                "Multiple dishes"
+              ]
+            },
+            {
+              "name": "Curry Powder",
+              "quantity": "2 tbsp",
+              "used_in": [
+                "Chickpea Spinach Curry"
+              ]
+            },
+            {
+              "name": "Lemon Juice",
+              "quantity": "3 tbsp",
+              "used_in": [
+                "Grilled Chicken Salad",
+                "Tuna Wrap"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Oils & Fats",
+          "items": [
+            {
+              "name": "Butter",
+              "quantity": "60 g",
+              "used_in": [
+                "Breakfast Toast",
+                "Oatmeal with Blueberries"
+              ]
+            }
+          ]
+        },
+        {
+          "category_name": "Others",
+          "items": [
+            {
+              "name": "Chicken Breast",
+              "quantity": "600 g",
+              "used_in": [
+                "Grilled Chicken Salad"
+              ]
+            },
+            {
+              "name": "Tuna (canned in water)",
+              "quantity": "2 cans (160 g each)",
+              "used_in": [
+                "Tuna Wrap"
+              ]
+            },
+            {
+              "name": "Honey",
+              "quantity": "3 tbsp",
+              "used_in": [
+                "Oatmeal with Blueberries",
+                "Breakfast Parfait"
+              ]
+            },
+            {
+              "name": "Chia Seeds",
+              "quantity": "60 g",
+              "used_in": [
+                "Breakfast Parfait"
+              ]
+            }
+          ]
+        }
+      ],
+      "total_items": 28
+    },
+    "nutrition_summary": {
+      "weekly_totals": {
+        "total_calories": 11900,
+        "total_protein": 732,
+        "total_carbs": 1400,
+        "total_fats": 390
+      },
+      "daily_averages": {
+        "avg_calories": 1983,
+        "avg_protein": 122,
+        "avg_carbs": 233,
+        "avg_fats": 65
+      },
+      "macro_split": {
+        "protein_percentage": 25,
+        "carbs_percentage": 47,
+        "fats_percentage": 28
+      }
+    }
+  }
+}
