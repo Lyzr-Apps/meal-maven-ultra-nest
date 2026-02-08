@@ -1,3 +1,7 @@
+'use client'
+
+import * as React from 'react'
+
 /**
  * Safe clipboard utility for iframe environments
  *
@@ -66,6 +70,3 @@ export function useCopyToClipboard(): [
 
   return [copy, copied]
 }
-
-// Import React for the hook
-import * as React from 'react'
