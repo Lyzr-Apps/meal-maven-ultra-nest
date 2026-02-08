@@ -149,75 +149,11 @@ const setupDisconnectHandlers = (): void => {
 };
 
 // Monitor WebSocket connections to detect HMR disconnect
+// NOTE: We no longer override WebSocket/EventSource constructors as this
+// interferes with Turbopack's HMR client and can break client-side hydration.
 const monitorWebSocketConnections = (): void => {
-  if (typeof window === 'undefined') return;
-
-  // Store original WebSocket
-  const OriginalWebSocket = window.WebSocket;
-  let hmrSocket: WebSocket | null = null;
-  let reconnectAttempts = 0;
-  const MAX_RECONNECT_LOG = 3;
-
-  // Override WebSocket to intercept HMR connections
-  (window as unknown as { WebSocket: typeof WebSocket }).WebSocket = class extends OriginalWebSocket {
-    constructor(url: string | URL, protocols?: string | string[]) {
-      super(url, protocols);
-
-      const urlStr = url.toString();
-
-      // Detect Next.js HMR WebSocket (usually on /_next/webpack-hmr)
-      if (urlStr.includes('/_next/') || urlStr.includes('webpack-hmr') || urlStr.includes('turbopack')) {
-        hmrSocket = this;
-        reconnectAttempts = 0;
-
-        this.addEventListener('open', () => {
-          sendToParent('info', ['🔌 HMR WebSocket connected']);
-          reconnectAttempts = 0;
-        });
-
-        this.addEventListener('close', (event) => {
-          reconnectAttempts++;
-
-          // Send the message that triggers sandbox refresh modal in parent
-          sendToParent('error', ['[vite] server connection lost. Polling for restart...']);
-
-          if (reconnectAttempts <= MAX_RECONNECT_LOG) {
-            sendToParent('warn', [`🔌 HMR WebSocket disconnected (code: ${event.code}, attempt: ${reconnectAttempts})`]);
-          }
-        });
-
-        this.addEventListener('error', () => {
-          sendToParent('error', ['🔌 HMR WebSocket error']);
-        });
-      }
-    }
-  };
-
-  // Also monitor EventSource for Next.js dev server
-  if (typeof EventSource !== 'undefined') {
-    const OriginalEventSource = EventSource;
-
-    (window as unknown as { EventSource: typeof EventSource }).EventSource = class extends OriginalEventSource {
-      constructor(url: string | URL, eventSourceInitDict?: EventSourceInit) {
-        super(url, eventSourceInitDict);
-
-        const urlStr = url.toString();
-
-        // Detect Next.js HMR EventSource
-        if (urlStr.includes('/_next/') || urlStr.includes('webpack-hmr')) {
-          this.addEventListener('open', () => {
-            sendToParent('info', ['📡 HMR EventSource connected']);
-          });
-
-          this.addEventListener('error', () => {
-            // Send the message that triggers sandbox refresh modal in parent
-            sendToParent('error', ['[vite] server connection lost. Polling for restart...']);
-            sendToParent('error', ['📡 HMR EventSource disconnected']);
-          });
-        }
-      }
-    } as typeof EventSource;
-  }
+  // Intentionally empty - removed WebSocket/EventSource overrides
+  // that were causing blank page issues by interfering with Turbopack HMR
 };
 
 // Setup fetch interceptor to log network requests
@@ -336,7 +272,7 @@ export const sendLogToParent = (level: LogLevel, ...args: unknown[]): void => {
   sendToParent(level, args);
 };
 
-// Auto-initialize if in browser
-if (typeof window !== 'undefined') {
-  initIframeLogger();
-}
+// NOTE: Removed auto-initialization side effect.
+// Initialization is handled by the IframeLoggerInit component's useEffect.
+// Running initIframeLogger() as a module-level side effect was interfering
+// with Turbopack's HMR client and breaking client-side hydration.
